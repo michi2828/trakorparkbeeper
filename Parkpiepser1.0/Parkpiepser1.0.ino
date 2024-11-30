@@ -1,5 +1,10 @@
 int piezo = 9;
-int entfernung = 0;
+int distance = 0;
+int distance2 = 0;
+int distance3 = 0;
+int duration = 0;
+int duration2 = 0;
+int duration3 = 0;
 
 unsigned long previousMillis1 = 0; 
 unsigned long previousMillis2 = 0;
@@ -8,7 +13,7 @@ const long interval1 = 0;
 const long interval2 = 0;
 const long interval3 = 0;
 
-
+#include <NewPing.h>
 #include <LiquidCrystal.h>
 
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
@@ -29,7 +34,7 @@ void setup() {
   pinMode(echoPin2, INPUT);
   pinMode(trigPin3, OUTPUT);
   pinMode(echoPin3, INPUT);
-
+ Serial.begin(9600);
 }
 
 
@@ -37,25 +42,24 @@ void setup() {
 void loop() {
 
     unsigned long currentMillis = millis();
-
+ delay(100);
     // Funktion 1
     if (currentMillis - previousMillis1 >= interval1) {
         previousMillis1 = currentMillis;
         function1();
     }
-
+ delay(100);
     // Funktion 2
     if (currentMillis - previousMillis2 >= interval2) {
         previousMillis2 = currentMillis;
         function2();
     }
-
+delay(100);
     // Funktion 3
     if (currentMillis - previousMillis3 >=interval3) {
       previousMillis3 = currentMillis;
       function3();
     }
-
 
 
 
@@ -74,20 +78,8 @@ digitalWrite(trigPin1, LOW);
   long duration = pulseIn(echoPin1, HIGH);
   long distance = duration * 0.034 / 2;
   
-  if(entfernung >= 500 || entfernung <=0)
-  {
-  Serial.println("Kein Messwert");
-  }
-  else
-  {
-  Serial.print(entfernung);
-  Serial.println(" cm");  
-  }
-  if(entfernung <= 80)
-  {
-  digitalWrite(piezo,LOW);  
-  }
-  delay(1000);
+Serial.print("1s");
+Serial.println(distance);
 }
 
 
@@ -105,22 +97,10 @@ digitalWrite(trigPin2, LOW);
 
 
   long duration = pulseIn(echoPin2, HIGH);
-  long distance = duration * 0.034 / 2;
+  long distance2 = duration * 0.034 / 2;
   
-  if(entfernung >= 500 || entfernung <=0)
-  {
-  Serial.println("Kein Messwert");
-  }
-  else
-  {
-  Serial.print(entfernung);
-  Serial.println(" cm");  
-  }
-  if(entfernung <= 80)
-  {
-  digitalWrite(piezo,LOW);  
-  }
-  delay(1000);
+Serial.print("2s");
+Serial.println(distance2);
 
 
  }
@@ -137,23 +117,11 @@ digitalWrite(trigPin3, LOW);
 
 
   long duration = pulseIn(echoPin3, HIGH);
-  long distance = duration * 0.034 / 2;
-  
-  if(entfernung >= 500 || entfernung <=0)
-  {
-  Serial.println("Kein Messwert");
-  }
-  else
-  {
-  Serial.print(entfernung);
-  Serial.println(" cm");  
-  }
-  if(entfernung <= 80)
-  {
-  digitalWrite(piezo,LOW);  
-  }
-  delay(1000);
-}
+  long distance3 = duration * 0.034 / 2;
 
+ Serial.print("3s");
+Serial.println(distance3); 
+ 
+}
 
 
