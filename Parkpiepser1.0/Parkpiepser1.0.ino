@@ -34,19 +34,23 @@ void loop() {
 if (beep1 != 0){
   beep = beep1;
 }else {nbcount = (nbcount + 1); }
-if (beep2 != 0){
- if (beep2 > beep1) {beep = beep2;}
+ if (beep2 != 0){
+ if (beep2 <= beep1) {beep = beep2;}
 }else {nbcount = (nbcount + 1); }
-if (beep3 != 0){
- if (beep3 > beep2) {beep = beep3;}
+ if (beep3 != 0){
+ if (beep3 <= beep2) {beep = beep3;}
 }else {nbcount = (nbcount + 1); }
 
-if (nbcount == 3) {beep = 0; nbcount = 0;} else {nbcount = 0;}
+ if (nbcount == 3) {beep = 0; nbcount = 0;} else {nbcount = 0;}
 
+if (beep != 0) {
+digitalWrite(7, HIGH);
+delay(100);
+digitalWrite(7, LOW);
+delay(beep);
+}
 
 Serial.println(beep);
-
-
 
   // Sensor 1
  if (currentMillis - previousMillis1 >= interval) {
